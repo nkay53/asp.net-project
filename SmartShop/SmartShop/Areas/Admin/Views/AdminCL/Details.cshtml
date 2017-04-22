@@ -1,0 +1,35 @@
+﻿@model SmartShopConnection.ChungLoai
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChungLoai</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaCL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaCL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenCL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenCL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaCL }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

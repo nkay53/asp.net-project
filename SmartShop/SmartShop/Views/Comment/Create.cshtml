@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <form action="@Url.Action("Created", "Comment")" method="post">
+        <input type="hidden" id="MaSP" name="MaSP" value="@Session["MaSP"]" />
+        <input type="hidden" id="UserCmt" name="UserCmt" value="@User.Identity.GetUserName()" />
+        <textarea name="NoiDung" id="NoiDung" rows="5" style="width:100%;"></textarea>
+        <input type="submit" value="Đăng">
+    </form>
+}
+else
+{
+    <h2>Vui lòng đăng nhập để Comment</h2>
+}

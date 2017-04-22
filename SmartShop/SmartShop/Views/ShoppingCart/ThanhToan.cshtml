@@ -1,0 +1,35 @@
+﻿@model SmartShopConnection.Account
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Thanh Toán Giỏ hàng";
+    Layout = null;
+}
+<div class="register_account">
+    <div class="wrap">
+        <form action="~/ShoppingCart/ThanhToan" method="post">
+            <div class="col_1_of_2 span_1_of_2">
+                <label class="col-md-2 control-label">Họ và tên: </label>
+                <div>
+                    <input class="form-control" data-val="true" id="HoTen" name="HoTen" type="text" value="@Html.DisplayFor(model => model.HoTen)" />
+                </div>
+                <label class="col-md-2 control-label">Email: </label>
+                <div>
+                    <input class="form-control" data-val="true" id="Email" name="Email" type="text" value="@Html.DisplayFor(model => model.Email)" />
+                </div>
+                <label class="col-md-2 control-label">Số điện thoại: </label>
+                <div>
+                    <input class="form-control" data-val="true" id="DienThoai" name="DienThoai" type="text" value="@Html.DisplayFor(model => model.DienThoai)" />
+                </div>
+                <label class="col-md-2 control-label">Địa chỉ: </label>
+                <div>
+                    <input class="form-control" data-val="true" id="DiaChi" name="DiaChi" type="text" value="@Html.DisplayFor(model => model.DiaChi)" />
+                </div>
+                <label class="col-md-2 control-label">Ghi chú: </label>
+                <div>
+                    <textarea class="form-control" data-val="true" id="GhiChu" name="GhiChu" ></textarea>
+                </div>
+                <input type="submit" class="grey" value="Hoàn thành" />
+            </div>
+        </form>
+    </div>
+</div>

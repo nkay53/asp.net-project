@@ -1,0 +1,122 @@
+﻿@model IEnumerable<SmartShopConnection.ChungLoai>
+@foreach (var item in Model )
+{
+<li class="active grid">
+    <a class="color4" href="/Product">@item.TenCL</a>
+    <div class="megapanel">
+        <div class="row">
+            <div class="col1">
+                <div class="h_nav">
+                    <h4>Hãng sản xuất</h4>
+                    <ul>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col1">
+                <div class="h_nav">
+                    <h4>Giá</h4>
+                    <ul>
+                        <li><a href="shop.html">Dưới 3 triệu</a></li>
+                        <li><a href="shop.html">3 triệu - 5 triệu</a></li>
+                        <li><a href="shop.html">5 triệu - 7 triệu</a></li>
+                        <li><a href="shop.html">7 triệu - 10 triệu</a></li>
+                        <li><a href="shop.html">10 triệu - 15 triệu</a></li>
+                        <li><a href="shop.html">Trên 15 triệu</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col1">
+                <div class="h_nav">
+                    <h4>Xuất xứ</h4>
+                    <ul>
+                        <li><a href="shop.html">Hàng chính hãng</a></li>
+                        <li><a href="shop.html">Hàng xách tay</a></li>
+                        <li><h4>Tình trạng</h4></li>
+                        <li><a href="shop.html">Cũ</a></li>
+                        <li><a href="shop.html">Mới</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col1">
+                <div class="h_nav">
+                    <h4>Hệ điều hành</h4>
+                    <ul>
+                        <li><a href="shop.html">Android</a></li>
+                        <li><a href="shop.html">IOS</a></li>
+                        <li><a href="shop.html">Windows Phone</a></li>
+                        <li><a href="shop.html">BlackBerry</a></li>
+                        <li><a href="shop.html">Khác</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col1">
+                <div class="h_nav">
+                    <img src="~/Images/nav_img1.jpg" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col2"></div>
+            <div class="col1"></div>
+            <div class="col1"></div>
+            <div class="col1"></div>
+            <div class="col1"></div>
+        </div>
+    </div>
+</li>
+}
+
+@if ((string)Session["admin"] == "1")
+{
+    <li>
+        <a class="color8" href="#">Admin</a>
+        <div class="megapanel">
+            <div class="row">
+                <div class="col1">
+                    <div class="h_nav">
+                        <h4>Sản phẩm</h4>
+                        <ul>
+                            <li><a href="/Product/Create">Thêm sản phẩm</a></li>
+                            <li><a href="/Product/Admin">Xem danh sách sản phẩm</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col1">
+                    <div class="h_nav">
+                        <h4>Loại sản phẩm</h4>
+                        <ul>
+                            <li><a href="/Loai/Create">Thêm loại</a></li>
+                            <li><a href="/Loai/Admin">Xem danh sách loại</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col1">
+                    <div class="h_nav">
+                        <h4>Chủng loại sản phẩm</h4>
+                        <ul>
+                            <li><a href="/ChungLoai/Create">Thêm chủng loại</a></li>
+                            <li><a href="/ChungLoai/Admin">Xem danh sách chủng loại</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col1">
+                    <div class="h_nav">
+                        <h4>User</h4>
+                        <ul>
+                            <li><a href="/User/register">Thêm user</a></li>
+                            <li><a href="/User/Admin">Xem danh sách user</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col1"></div>
+                <div class="col1"></div>
+                <div class="col1"></div>
+                <div class="col1"></div>
+            </div>
+        </div>
+    </li>
+}

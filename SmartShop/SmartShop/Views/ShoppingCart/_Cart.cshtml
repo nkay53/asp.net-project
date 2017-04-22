@@ -1,0 +1,28 @@
+﻿@model SmartShop.Models.ShoppingCartModels
+
+<h2>Giỏ hàng của bạn</h2>
+
+@if (Model != null && Model.Cart != null)
+{
+    <table width="99%" border="0" cellspacing="1" cellpadding="0" class="table-cart" align="center">
+        <tr valign="middle" class="title-cart">
+            <td width="45%">Sản Phẩm</td>            
+        </tr>
+        @foreach (var item in Model.Cart.ListItem)
+        {
+            <tr>
+                <td>
+                    <div>
+                        <img src="~/Image/san pham/@item.Hinh" style="float:left; margin-right: 15px; margin-left: 10px; max-width: 150px; max-height: 200px;" />
+                        <div class="itm-cartDetails">
+                            <strong>@item.TenSP</strong>
+                            <h3><a style="text-decoration:none;text-transform:uppercase;font-weight:normal" href="/Product/Detail/@item.MaSP">@item.TenSP</a></h3>
+                        </div>
+                    </div>
+                </td>               
+            </tr>
+        }       
+    </table>
+}
+
+

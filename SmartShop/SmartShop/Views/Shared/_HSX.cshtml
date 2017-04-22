@@ -1,0 +1,5 @@
+﻿@model IEnumerable<SmartShopConnection.Loai>
+@foreach (var item in Model )
+{
+    <label class="checkbox"><input type="checkbox" name="checkbox"><a href="/Product/Type/?loai=@item.TenLoai"><i></i>@item.TenLoai (@item.SoLuong)</a></label>
+}

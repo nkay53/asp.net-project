@@ -1,0 +1,58 @@
+﻿@model SmartShopConnection.Account
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+@Styles.Render("~/Content/css")
+<div>
+    <h4>Thông tin tài khoản</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="~/Account/Edit?id=@Model.UserName" class="grey">Sửa thông tin cá nhân</a>
+    @Html.ActionLink("Đổi mật khẩu", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage", @class = "grey" })
+    <a href="~/Account/DonHang?id=@Model.UserName" class="grey">Danh sách đơn hàng</a>
+</p>

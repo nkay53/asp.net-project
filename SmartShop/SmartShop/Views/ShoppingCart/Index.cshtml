@@ -1,0 +1,101 @@
+﻿@model SmartShop.Models.ShoppingCartModels
+@{
+    ViewBag.Title = "Giỏ hàng";
+}
+<script type="text/javascript">
+    function RemoveFromCart(id)
+    {
+        if (confirm('Bạn thực sự muốn xóa sản phẩm này khỏi giỏ hàng?'))
+        {
+            $.post("/ShoppingCart/RemoveFromCart", { "id": id },
+            function (data) {
+                if (data.Code == '0') {
+                    alert('Xóa sản phẩm khỏi giỏ hàng thành công');
+                    window.location = '/ShoppingCart';
+                }
+            });
+        }
+        return false;
+    }
+    function UpdateQuantity(id, quantity)
+    {
+        $.post("/ShoppingCart/UpdateQuantity", { "id": id, "quantity": quantity },
+            function (data) {
+                if (data.Code == '0') {
+                    window.location = '/ShoppingCart';
+                }
+            });
+        return false;
+    }
+</script>
+
+<h2>Giỏ hàng của bạn</h2>
+
+@if (Model != null && Model.Cart != null)
+{
+    <table width="99%" border="0" cellspacing="1" cellpadding="0" class="table-cart" align="center">
+        <tr valign="middle" class="title-cart">
+            <td width="45%">Sản Phẩm</td>
+            <td width="7%">Xoá </td>
+            <td width="12%">Số lượng</td>
+            <td width="15%">Tổng cộng</td>
+        </tr>
+        @foreach (var item in Model.Cart.ListItem)
+        {
+            <tr>
+                <td>
+                    <div>
+                        <img src="~/Image/san pham/@item.Hinh" style="float:left; margin-right: 15px; margin-left: 10px; max-width: 150px; max-height: 200px;" />
+                        <div class="itm-cartDetails">
+                            <strong>@item.TenSP</strong>
+                            <h3><a style="text-decoration:none;text-transform:uppercase;font-weight:normal" href="/Product/Detail/@item.MaSP">@item.TenSP</a></h3>
+                        </div>
+                    </div>
+                </td>
+                <td align="center"><img src="~/Image/icon-del.png" onclick="return RemoveFromCart('@item.MaSP');" /></td>
+                <td align="center">
+                    <select id="quantity_@item.MaSP" title="Số lượng" name="thanh toan" class="" onchange="return UpdateQuantity('@item.MaSP',this.value);">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                    <script type="text/javascript">
+                        $('#quantity_@item.MaSP').val('@item.SoLuong');
+                    </script>
+                </td>
+                <td align="center"><b>@item.TongCong.ToString("N0") VND</b></td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4" align="center"><b>TỔNG THÀNH TIỀN</b></td>
+            <td>
+                @if (Model != null && @Model.Cart != null)
+                {
+                    <strong>@Model.Cart.GetTotal().ToString("N0") VND</strong>
+                }
+            </td>
+        </tr>
+        <tr>
+            @if (Request.IsAuthenticated)
+            {
+                <td colspan="4" align="center">
+                        @Html.Action("ThanhToan", "ShoppingCart")
+                </td>
+            }
+            else
+            {
+                <td colspan="4" align="center">@Html.ActionLink("Vui lòng đăng nhập để thanh toán","Login","Account")</td>
+            }
+                
+        </tr>
+        
+</table>
+}
+

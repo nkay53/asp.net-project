@@ -1,0 +1,300 @@
+﻿@using Microsoft.AspNet.Identity
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SmartShop</title>
+    <script type="text/javascript" src="~/Scripts/jquery.min1.12.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Edit_cmt").click(function () {
+                $(".EditCmt").slideToggle();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function AddToCart(id) {
+            $.post("/ShoppingCart/AddToCart", { "id": id },
+            function (data) {
+                if (data.Code == '0') {
+                    alert('Thêm sản phẩm vào giỏ hàng thành công');
+                }
+            });
+            return false;
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/style1.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/form.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="~/Scripts/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".dropdown img.flag").addClass("flagvisibility");
+
+            $(".dropdown dt a").click(function () {
+                $(".dropdown dd ul").toggle();
+            });
+
+            $(".dropdown dd ul li a").click(function () {
+                var text = $(this).html();
+                $(".dropdown dt a span").html(text);
+                $(".dropdown dd ul").hide();
+                $("#result").html("Selected value is: " + getSelectedValue("sample"));
+            });
+
+            function getSelectedValue(id) {
+                return $("#" + id).find("dt a span.value").html();
+            }
+
+            $(document).bind('click', function (e) {
+                var $clicked = $(e.target);
+                if (!$clicked.parents().hasClass("dropdown"))
+                    $(".dropdown dd ul").hide();
+            });
+
+
+            $("#flagSwitcher").click(function () {
+                $(".dropdown img.flag").toggleClass("flagvisibility");
+            });
+        });
+    </script>
+    <!-- start menu -->
+    <link href="~/Content/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Scripts/js/megamenu.js"></script>
+    <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+    <!-- end menu -->
+    <script type="text/javascript" src="~/Scripts/js/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript" id="sourcecode">
+        $(function () {
+            $('.scroll-pane').jScrollPane();
+        });
+    </script>
+    <!----details-product-slider--->
+    <!-- Include the Etalage files -->
+    <link rel="stylesheet" href="~/Content/etalage.css">
+    <script src="~/Scripts/js/jquery.etalage.min.js"></script>
+    <!-- Include the Etalage files -->
+    <script>
+        jQuery(document).ready(function ($) {
+
+            $('#etalage').etalage({
+                thumb_image_width: 300,
+                thumb_image_height: 400,
+
+                show_hint: true,
+                click_callback: function (image_anchor, instance_id) {
+                    alert('Callback example:\nYou clicked on an image with the anchor: "' + image_anchor + '"\n(in Etalage instance: "' + instance_id + '")');
+                }
+            });
+            // This is for the dropdown list example:
+            $('.dropdownlist').change(function () {
+                etalage_show($(this).find('option:selected').attr('class'));
+            });
+
+        });
+    </script>
+    <!----//details-product-slider--->
+    <!-- top scrolling -->
+    <script type="text/javascript" src="~/Scripts/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1200);
+            });
+        });
+    </script>
+</head>
+<body>
+    
+  <div class="header-top">
+	 <div class="wrap"> 
+		<div class="logo">
+			<a href="~/"><img src="~/Image/logo.png" alt=""/></a>
+	    </div>
+	    <div class="cssmenu">
+		   <ul>
+            @if (!Request.IsAuthenticated)
+            {
+			 <li class="active"><a href="/Account/Register">Đăng ký</a></li> 
+            }
+             @if (Request.IsAuthenticated)
+             {
+                 using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                 {
+                     @Html.AntiForgeryToken()
+
+                         <li>
+                             <a href="~/Account/Details?id=@User.Identity.GetUserName()">Xin chào @User.Identity.GetUserName() !</a>
+                             
+                         </li>
+                         <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+                 }
+             }
+             else
+             {
+                  <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>                 
+             }
+			 <li><a href="/ShoppingCart/Index">Giỏ hàng</a></li> 
+		   </ul>
+		</div>
+		<ul class="icon2 sub-icon2 profile_img">
+            <li id="cartmini">
+                <a class="active-icon c2" href="#">@Session["sluong"]</a>
+                <ul class="sub-icon2 list" id="cartmini">
+                    <li><h3>Products</h3><a href=""></a></li>
+                    @Html.Action("_Cart", "ShoppingCart")
+                    <li><p>Lorem ipsum dolor sit amet, consectetuer</p></li>
+                </ul>
+            </li>
+		</ul>
+		<div class="clear"></div>
+ 	</div>
+   </div>
+   <div class="header-bottom">
+   	<div class="wrap">
+   		<!-- start header menu -->
+		@Html.Action("MainMenu","Menu")
+		   <div class="clear"></div>
+     	</div>
+       </div>
+
+    <!-------------->
+    <div class="index-banner">
+
+       
+        
+
+        <div class="wmuSlider example1" style="height: 560px;">
+            <div class="wmuSliderWrapper">
+                <article style="position: relative; width: 100%; opacity: 1;">
+                    <div class="banner-wrap">
+                        <div class="slider-left">
+                            <img src="~/Image/s6e.jpg" alt="" />
+                        </div>
+                        <div class="slider-right">
+                            <h1>Samsung Galaxy s6 Edge</h1>
+                            <br />
+                            <div class="btn"><a href="/Product/Index">Shop Now</a></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </article>
+                <article style="position: absolute; width: 100%; opacity: 0;">
+                    <div class="banner-wrap">
+                        <div class="slider-left">
+                            <img src="~/Image/z3.jpg" alt="" />
+                        </div>
+                        <div class="slider-right">
+                            <h1>Sony Xperia Z3</h1>
+                            <br /><br />
+                            <div class="btn"><a href="/Product/Index">Shop Now</a></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </article>
+                <article style="position: absolute; width: 100%; opacity: 0;">
+                    <div class="banner-wrap">
+                        <div class="slider-left">
+
+
+                            <img src="~/Image/930.jpg" alt="" />
+                        </div>
+                        <div class="slider-right">
+                            <h1>Nokia lumia 930</h1>
+                            <br /><br />
+                            <div class="btn"><a href="/Product/Index">Shop Now</a></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </article>
+                <article style="position: absolute; width: 100%; opacity: 0;">
+                    <div class="banner-wrap">
+                        <div class="slider-left">
+                            <img src="~/Image/Passport.jpg" alt="" />
+                        </div>
+                        <div class="slider-right">
+                            <h1>BlackBerry Passport</h1>
+                            <br /><br />
+                            <div class="btn"><a href="/Product/Index">Shop Now</a></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </article>
+                <article style="position: absolute; width: 100%; opacity: 0;">
+                    <div class="banner-wrap">
+                        <div class="slider-left">
+                            <img src="~/Image/m8.jpg" alt="" />
+                        </div>
+                        <div class="slider-right">
+                            <h1>HTC One M8</h1>
+                            <br /><br />
+                            <div class="btn"><a href="/Product/Index">Shop Now</a></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </article>
+            </div>
+            <a class="wmuSliderPrev">Previous</a><a class="wmuSliderNext">Next</a>
+            <ul class="wmuSliderPagination">
+                <li><a href="#" class="">0</a></li>
+                <li><a href="#" class="">1</a></li>
+                <li><a href="#" class="wmuActive">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+            <a class="wmuSliderPrev">Previous</a><a class="wmuSliderNext">Next</a><ul class="wmuSliderPagination"><li><a href="#" class="wmuActive">0</a></li><li><a href="#" class="">1</a></li><li><a href="#" class="">2</a></li><li><a href="#" class="">3</a></li><li><a href="#" class="">4</a></li></ul>
+        </div>
+        <script src="~/Scripts/js/jquery.wmuSlider.js"></script>
+        <script type="text/javascript" src="~/Scripts/js/modernizr.custom.min.js"></script>
+        <script>
+            $('.example1').wmuSlider();
+        </script>
+    </div>
+    <!-------------->
+             @RenderBody()
+        <div class="footer">
+       	  <div class="footer-top">
+       		<div class="wrap">
+       			   
+			 </div>
+       	 </div>
+       	 <div class="footer-middle">
+       	 	<div class="wrap">
+				<div class="col_1_of_middle span_1_of_middle">
+						<div class="search">
+                            <form action="~/Product/Search/" method="get">
+                                <input type="text" name="key" id="key" class="textbox" value="Tìm kiếm" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}">
+                                <input type="submit" value="Subscribe" id="submit" name="submit">
+                            </form>
+							<div id="response"> </div>
+			 			</div><div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			   </div>
+       	 	</div>
+       	 </div>
+       	 
+       	 
+       
+       <script type="text/javascript">
+			$(document).ready(function() {
+			
+				var defaults = {
+		  			containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+		 		};
+				
+				
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				
+			});
+		</script>
+        <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+</body>
+</html>
