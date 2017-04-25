@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SmartShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdminLoaiController : Controller
     {
         //

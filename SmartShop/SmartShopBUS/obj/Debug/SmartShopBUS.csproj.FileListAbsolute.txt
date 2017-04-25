@@ -10,3 +10,9 @@ C:\Users\V5-471\Documents\Visual Studio 2013\Projects\SmartShop\SmartShopBUS\bin
 C:\Users\V5-471\Documents\Visual Studio 2013\Projects\SmartShop\SmartShopBUS\obj\Debug\SmartShopBUS.csprojResolveAssemblyReference.cache
 C:\Users\V5-471\Documents\Visual Studio 2013\Projects\SmartShop\SmartShopBUS\obj\Debug\SmartShopBUS.dll
 C:\Users\V5-471\Documents\Visual Studio 2013\Projects\SmartShop\SmartShopBUS\obj\Debug\SmartShopBUS.pdb
+C:\Users\V5-471\Desktop\Git\asp.net-project\SmartShop\SmartShopBUS\bin\Debug\SmartShopBUS.dll.config
+C:\Users\V5-471\Desktop\Git\asp.net-project\SmartShop\SmartShopBUS\bin\Debug\SmartShopBUS.dll
+C:\Users\V5-471\Desktop\Git\asp.net-project\SmartShop\SmartShopBUS\bin\Debug\SmartShopBUS.pdb
+C:\Users\V5-471\Desktop\Git\asp.net-project\SmartShop\SmartShopBUS\obj\Debug\SmartShopBUS.csprojResolveAssemblyReference.cache
+C:\Users\V5-471\Desktop\Git\asp.net-project\SmartShop\SmartShopBUS\obj\Debug\SmartShopBUS.dll
+C:\Users\V5-471\Desktop\Git\asp.net-project\SmartShop\SmartShopBUS\obj\Debug\SmartShopBUS.pdb

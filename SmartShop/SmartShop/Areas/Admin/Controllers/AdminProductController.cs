@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SmartShop.Areas.Admin.Controllers
 {
-    [Authorize(Roles="Admin")]
+    //[Authorize(Roles="Admin")]
     public class AdminProductController : Controller
     {
         //
@@ -127,7 +127,7 @@ namespace SmartShop.Areas.Admin.Controllers
                 {
                     if (sp.ImageUpload2 != null && sp.ImageUpload2.ContentLength > 0)
                     {
-                        var uploadDir = "~/image/san pham";
+                        var uploadDir = "~/Image/product";
                         var imagePath = Path.Combine(Server.MapPath(uploadDir), sp.ImageUpload2.FileName);
                         var imageUrl = Path.Combine(uploadDir, sp.ImageUpload2.FileName);
                         sp.ImageUpload2.SaveAs(imagePath);

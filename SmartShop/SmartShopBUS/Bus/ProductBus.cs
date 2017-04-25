@@ -18,7 +18,7 @@ namespace SmartShopBUS.Bus
         public static Page<viewAdProduct> AdDanhSach(int? page)
         {
             var db = new SmartShopConnectionDB();
-            return db.Page<viewAdProduct>(page.Value, 9, "SELECT * FROM viewAdProduct ORDER BY NgayDangSP DESC");
+            return db.Page<viewAdProduct>(page.Value, 9, "SELECT * FROM Product ORDER BY NgayDangSP DESC");
         }
         public static Page<Product> DanhSachHOT(int? page)
         {
